@@ -23,10 +23,22 @@ def layout():
 			html.Span(id='app1-output', children=None),
 			html.Br(),
 			html.Br(),
+
+			'''
+			Alternative
+			html.Div([
+				html.Span('The button was clicked: '),
+				html.Span(id='app1-output', children=None),
+				html.Span(' times.'),
+			]),
+			html.Div([
+				html.Span('The last click occurred at: '),
+				html.Span(id='app1-output2', children=None),
+			])
+			'''
+
 		])
 	])
-
-
 
 # Modifies the 'children' property of the element with ID 'app1-output'
 # The 'children' property is whatever is stored within a HTML tag: <div>children go here</div>
@@ -36,8 +48,27 @@ def layout():
 	Output('app1-output', 'children'),
 	[Input('app1-button', 'n_clicks')])
 
+'''
+@app.callback(
+	[
+		Output('app1-output', 'children'),
+		Output('app1-output2', 'children'),
+	],
+	[ Input('app1-button', 'n_clicks') ])
 def update_click_count(n_clicks):
-	x = ' times.'
+	if n_clicks == 0:
+		timestamp = 'never'
+	else:
+		timestamp = datetime.today().strftime('%Y-%m-%d %H:%M:%S')
+	return n_clicks, timestamp
+	
+	'''
+
+
+def update_click_count(n_clicks):
+	x = ' times.' #Not  super proud that I had to finesse the rest of the message into here like I did.
+	# Personally it feels messy and i know theres a better way
+	# but given my time constraints i'll try not to lose sleep over it
 	if(n_clicks == 0):
 		html.Br(),
 		msg = 'The button has never been clicked'
