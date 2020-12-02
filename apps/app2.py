@@ -57,7 +57,7 @@ def layout():
 					{'id': 'date', 'name': 'Date'},
 					{'id': 'positive', 'name': 'Positive tests'},
 					{'id': 'total', 'name': 'Total tests'},
-					
+
 					#5b) Appends the table with the positivity rate
 					{'id': 'rate', 'name': 'Positivity Rate'},
 				],
